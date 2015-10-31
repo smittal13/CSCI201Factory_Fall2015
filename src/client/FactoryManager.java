@@ -9,6 +9,7 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
 import resource.Factory;
+import resource.Resource;
 
 public class FactoryManager implements Runnable , ChangeListener{
 
@@ -110,6 +111,14 @@ public class FactoryManager implements Runnable , ChangeListener{
 	
 	public void reset() {
 		loadFactory(mFactory, mTable);
+	}
+	
+	public void deliver(Resource resource) {
+		if(mFactorySimulation != null) {
+			if (mFactorySimulation.getMailBox() != null) {
+				mFactorySimulation.getMailBox().insert(resource);
+			}
+		}
 	}
 	
 }

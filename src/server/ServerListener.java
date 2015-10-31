@@ -14,9 +14,13 @@ public class ServerListener extends Thread {
 	private ServerSocket ss;
 	private Vector<ServerClientCommunicator> sccVector;
 	private Factory factory;
+	private FactoryWarehouse factoryWarehouse;
+	
 	public ServerListener(ServerSocket ss) {
 		this.ss = ss;
 		sccVector = new Vector<ServerClientCommunicator>();
+		factoryWarehouse = new FactoryWarehouse(sccVector);
+		new Thread(factoryWarehouse).start();
 	}
 	
 	public void sendFactory(Factory factory) {
@@ -24,6 +28,7 @@ public class ServerListener extends Thread {
 		for (ServerClientCommunicator scc : sccVector) {
 			scc.sendFactory(factory);
 		}
+		factoryWarehouse.setFactory(factory);
 	}
 	
 	public void removeServerClientCommunicator(ServerClientCommunicator scc) {

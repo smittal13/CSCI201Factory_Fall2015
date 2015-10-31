@@ -5,8 +5,10 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.util.Queue;
 
 import resource.Factory;
+import resource.Resource;
 import utilities.Util;
 
 public class ServerClientCommunicator extends Thread {
@@ -28,6 +30,15 @@ public class ServerClientCommunicator extends Thread {
 			oos.writeObject(factory);
 			oos.flush();
 		} catch (IOException ioe) {
+			Util.printExceptionToCommand(ioe);
+		}
+	}
+	
+	public void sendResource(Resource resource) {
+		try {
+			oos.writeObject(resource);
+			oos.flush();
+		}catch (IOException ioe) {
 			Util.printExceptionToCommand(ioe);
 		}
 	}

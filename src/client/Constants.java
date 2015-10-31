@@ -32,6 +32,7 @@ public class Constants {
 	public static final String waitingForFactoryConfigMessage = "Waiting for factory configuration from server...";
 	public static final String serverCommunicationFailed = "Communication with the server failed.";
 	public static final String factoryReceived = "Factory received.";
+	public static final String resourceReceived = "Resource received.";
 	public static final String workerString = "Worker ";
 	public static final String startedBuildingString = " started building ";
 	public static final String finishedBuildingString = " finished building ";
