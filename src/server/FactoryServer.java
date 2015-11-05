@@ -3,6 +3,7 @@ package server;
 import java.net.ServerSocket;
 
 import resource.Factory;
+import resource.Product;
 
 public class FactoryServer {
 
@@ -22,6 +23,15 @@ public class FactoryServer {
 	}
 	
 	public static void sendFactory(Factory factory) {
+		MySQLDriver msql = new MySQLDriver();
+		msql.connect();
+		for (Product p : factory.getProducts()) {
+			if(!msql.doesExist(p.getName())) {
+				msql.add(p.getName());
+			}
+		}
+		msql.stop();
+		
 		if (serverListener != null) {
 			serverListener.sendFactory(factory);
 		}

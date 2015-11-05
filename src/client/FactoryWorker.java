@@ -106,6 +106,7 @@ public class FactoryWorker extends FactoryObject implements Runnable, FactoryRep
 					FactoryResource toTake = (FactoryResource)mDestinationNode.getObject();
 					toTake.takeResource(resource.getQuantity());
 				}
+				
 				//update table
 				{
 					mDestinationNode = mFactorySimulation.getNode("Task Board");
